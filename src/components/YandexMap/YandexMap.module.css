@@ -1,0 +1,14 @@
+.mapContainer {
+    width: 60%;
+
+    iframe{
+        border-radius: 70px;
+        width: 100%;
+    }
+    @media (max-width: 750px) {
+        width: 100%;
+        iframe{
+            height: 50vh;
+        }
+    }
+}

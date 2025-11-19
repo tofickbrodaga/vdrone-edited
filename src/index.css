@@ -1,0 +1,87 @@
+@font-face {
+  font-family: 'TD Mars';
+  src: url('./assets/fonts/TDMars.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'durik';
+  src: url('./assets/fonts/Durik.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'pixy';
+  src: url('./assets/fonts/PIXY.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Helvetica', sans-serif;
+}
+
+input, button{
+  border: none;
+}
+button:active{
+  transform: scale(0.9);
+}
+
+p,h1,h2,h3,h4,h5,h6,a,span,li,ul,button,input,img,svg{
+  z-index: 2;
+}
+a{
+  text-decoration: none;
+}
+html{
+  overflow-x: hidden;
+}
+body{
+  overflow-x: hidden;
+  background-color: #0B0B0B;
+  color: white;
+}
+
+p {
+  font-size: 2rem;
+  @media (max-width: 1000px) {
+    font-size: 1.5rem;
+  }
+  @media (max-width: 600px) {
+    font-size: 1.3rem;
+  }
+  @media (max-width: 400px) {
+    font-size: 1.1rem;
+  }
+}
+
+h2{
+  font-family: 'TD Mars', sans-serif;
+  font-weight: 400;
+  font-size: 3rem;
+  line-height: 50px;
+  letter-spacing: 0%;
+  @media (max-width: 1000px) {
+    font-size: 2rem;
+  }
+  @media (max-width: 600px) {
+    font-size: 1.4rem;
+    line-height: 35px;
+  }
+  @media (max-width: 400px) {
+    font-size: 1.1rem;
+    line-height: 30px;
+  }
+}
+
+h3{
+  font-family: 'durik', sans-serif;
+  font-weight: 400;
+  font-size: 4rem;
+  line-height: 40px;
+  letter-spacing: -5%;
+}
