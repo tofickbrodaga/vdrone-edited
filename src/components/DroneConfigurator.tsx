@@ -1,9 +1,7 @@
-/*
-Финальная рабочая версия. Убран 'material-color' для отображения оригинальных текстур.
-*/
 import * as THREE from 'three';
-import React from 'react';
+import React, { useRef } from 'react';
 import { useGLTF } from '@react-three/drei';
+import { useFrame } from '@react-three/fiber'; 
 import type { GLTF } from 'three-stdlib';
 
 export interface DroneParts {
@@ -15,6 +13,18 @@ export interface DroneParts {
 interface DroneConfiguratorProps extends React.ComponentProps<'group'> {
     parts: DroneParts;
 }
+
+const SpinningBlade = ({ dir = 1, speed = 10, ...props }: any) => {
+  const meshRef = useRef<THREE.Mesh>(null);
+
+  useFrame((state, delta) => {
+    if (meshRef.current) {
+      meshRef.current.rotateY(speed * delta * dir);
+    }
+  });
+
+  return <mesh ref={meshRef} {...props} />;
+};
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -33,22 +43,22 @@ type GLTFResult = GLTF & {
 
 const EnginesOcto = ({ nodes, materials }: GLTFResult) => (
   <group name="Engines_Octo_Group">
-    <mesh geometry={nodes['Oct-1000'].geometry} material={materials.Material} position={[-1.018, -0.127, 2.447]} rotation={[-3.06, 0.143, 3]} scale={0.359} />
-    <mesh geometry={nodes['Oct-1001'].geometry} material={materials.Material} position={[1.01, -0.127, 2.45]} rotation={[-3.06, 0.143, 3]} scale={0.359} />
-    <mesh geometry={nodes['Oct-1002'].geometry} material={materials.Material} position={[2.447, -0.127, 1.018]} rotation={[-3.06, 0.143, 3]} scale={0.359} />
-    <mesh geometry={nodes['Oct-1003'].geometry} material={materials.Material} position={[2.45, -0.127, -1.01]} rotation={[-3.06, 0.143, 3]} scale={0.359} />
-    <mesh geometry={nodes['Oct-1004'].geometry} material={materials.Material} position={[1.018, -0.127, -2.447]} rotation={[-3.06, 0.143, 3]} scale={0.359} />
-    <mesh geometry={nodes['Oct-1005'].geometry} material={materials.Material} position={[-1.01, -0.127, -2.45]} rotation={[-3.06, 0.143, 3]} scale={0.359} />
-    <mesh geometry={nodes['Oct-1006'].geometry} material={materials.Material} position={[-2.447, -0.127, -1.018]} rotation={[-3.06, 0.143, 3]} scale={0.359} />
-    <mesh geometry={nodes['Oct-1007'].geometry} material={materials.Material} position={[-2.45, -0.127, 1.01]} rotation={[-3.06, 0.143, 3]} scale={0.359} />
-    <mesh geometry={nodes['Oct-2001'].geometry} material={materials.Material} position={[-1.018, -0.126, 2.447]} rotation={[-3.06, 0.153, 3]} scale={0.359} />
-    <mesh geometry={nodes['Oct-2003'].geometry} material={materials.Material} position={[-2.45, -0.126, 1.01]} rotation={[-3.06, 0.153, 3]} scale={0.359} />
-    <mesh geometry={nodes['Oct-2005'].geometry} material={materials.Material} position={[-2.447, -0.126, -1.018]} rotation={[-3.06, 0.153, 3]} scale={0.359} />
-    <mesh geometry={nodes['Oct-2007'].geometry} material={materials.Material} position={[-1.01, -0.126, -2.45]} rotation={[-3.06, 0.153, 3]} scale={0.359} />
-    <mesh geometry={nodes['Oct-2016'].geometry} material={materials.Material} position={[1.018, -0.126, -2.447]} rotation={[-3.06, 0.153, 3]} scale={0.359} />
-    <mesh geometry={nodes['Oct-2018'].geometry} material={materials.Material} position={[2.45, -0.126, -1.01]} rotation={[-3.06, 0.153, 3]} scale={0.359} />
-    <mesh geometry={nodes['Oct-2019'].geometry} material={materials.Material} position={[2.447, -0.126, 1.018]} rotation={[-3.06, 0.153, 3]} scale={0.359} />
-    <mesh geometry={nodes['Oct-2021'].geometry} material={materials.Material} position={[1.01, -0.126, 2.45]} rotation={[-3.06, 0.153, 3]} scale={0.359} />
+    <SpinningBlade dir={1} geometry={nodes['Oct-1000'].geometry} material={materials.Material} position={[-1.018, -0.127, 2.447]} rotation={[-3.06, 0.143, 3]} scale={0.359} />
+    <SpinningBlade dir={-1} geometry={nodes['Oct-1001'].geometry} material={materials.Material} position={[1.01, -0.127, 2.45]} rotation={[-3.06, 0.143, 3]} scale={0.359} />
+    <SpinningBlade dir={1} geometry={nodes['Oct-1002'].geometry} material={materials.Material} position={[2.447, -0.127, 1.018]} rotation={[-3.06, 0.143, 3]} scale={0.359} />
+    <SpinningBlade dir={-1} geometry={nodes['Oct-1003'].geometry} material={materials.Material} position={[2.45, -0.127, -1.01]} rotation={[-3.06, 0.143, 3]} scale={0.359} />
+    <SpinningBlade dir={1} geometry={nodes['Oct-1004'].geometry} material={materials.Material} position={[1.018, -0.127, -2.447]} rotation={[-3.06, 0.143, 3]} scale={0.359} />
+    <SpinningBlade dir={-1} geometry={nodes['Oct-1005'].geometry} material={materials.Material} position={[-1.01, -0.127, -2.45]} rotation={[-3.06, 0.143, 3]} scale={0.359} />
+    <SpinningBlade dir={1} geometry={nodes['Oct-1006'].geometry} material={materials.Material} position={[-2.447, -0.127, -1.018]} rotation={[-3.06, 0.143, 3]} scale={0.359} />
+    <SpinningBlade dir={-1} geometry={nodes['Oct-1007'].geometry} material={materials.Material} position={[-2.45, -0.127, 1.01]} rotation={[-3.06, 0.143, 3]} scale={0.359} />
+    <SpinningBlade dir={-1} geometry={nodes['Oct-2001'].geometry} material={materials.Material} position={[-1.018, -0.126, 2.447]} rotation={[-3.06, 0.153, 3]} scale={0.359} />
+    <SpinningBlade dir={1} geometry={nodes['Oct-2003'].geometry} material={materials.Material} position={[-2.45, -0.126, 1.01]} rotation={[-3.06, 0.153, 3]} scale={0.359} />
+    <SpinningBlade dir={-1} geometry={nodes['Oct-2005'].geometry} material={materials.Material} position={[-2.447, -0.126, -1.018]} rotation={[-3.06, 0.153, 3]} scale={0.359} />
+    <SpinningBlade dir={1} geometry={nodes['Oct-2007'].geometry} material={materials.Material} position={[-1.01, -0.126, -2.45]} rotation={[-3.06, 0.153, 3]} scale={0.359} />
+    <SpinningBlade dir={-1} geometry={nodes['Oct-2016'].geometry} material={materials.Material} position={[1.018, -0.126, -2.447]} rotation={[-3.06, 0.153, 3]} scale={0.359} />
+    <SpinningBlade dir={1} geometry={nodes['Oct-2018'].geometry} material={materials.Material} position={[2.45, -0.126, -1.01]} rotation={[-3.06, 0.153, 3]} scale={0.359} />
+    <SpinningBlade dir={-1} geometry={nodes['Oct-2019'].geometry} material={materials.Material} position={[2.447, -0.126, 1.018]} rotation={[-3.06, 0.153, 3]} scale={0.359} />
+    <SpinningBlade dir={1} geometry={nodes['Oct-2021'].geometry} material={materials.Material} position={[1.01, -0.126, 2.45]} rotation={[-3.06, 0.153, 3]} scale={0.359} />
     <mesh geometry={nodes['Oct-3001'].geometry} material={nodes['Oct-3001'].material} position={[-1.012, -0.224, 2.443]} rotation={[0.078, -0.089, 0.054]} scale={0.117} />
     <mesh geometry={nodes['Oct-3002'].geometry} material={nodes['Oct-3002'].material} position={[1.012, -0.224, 2.444]} rotation={[0.078, -0.089, 0.054]} scale={0.117} />
     <mesh geometry={nodes['Oct-3003'].geometry} material={nodes['Oct-3003'].material} position={[2.443, -0.224, 1.012]} rotation={[0.078, -0.089, 0.054]} scale={0.117} />
@@ -59,6 +69,7 @@ const EnginesOcto = ({ nodes, materials }: GLTFResult) => (
     <mesh geometry={nodes['Oct-3018'].geometry} material={nodes['Oct-3018'].material} position={[-2.444, -0.224, 1.012]} rotation={[0.078, -0.089, 0.054]} scale={0.117} />
   </group>
 );
+
 const EnginesHexa = ({ nodes, materials }: GLTFResult) => (
   <group name="Engines_Hexa_Group">
     <mesh geometry={nodes['Engine-hex008'].geometry} material={nodes['Engine-hex008'].material} position={[-0.986, -0.171, 1.716]} scale={0.122} />
@@ -67,24 +78,27 @@ const EnginesHexa = ({ nodes, materials }: GLTFResult) => (
     <mesh geometry={nodes['Engine-hex011'].geometry} material={nodes['Engine-hex011'].material} position={[1.979, -0.171, -0.004]} scale={0.122} />
     <mesh geometry={nodes['Engine-hex012'].geometry} material={nodes['Engine-hex012'].material} position={[0.986, -0.171, -1.716]} scale={0.122} />
     <mesh geometry={nodes['Engine-hex013'].geometry} material={nodes['Engine-hex013'].material} position={[-0.993, -0.171, -1.712]} scale={0.122} />
-    <mesh geometry={nodes['Hex-1004'].geometry} material={materials.Material} position={[-0.988, -0.077, 1.714]} rotation={[3.125, 0.47, 3.083]} scale={0.359} />
-    <mesh geometry={nodes['Hex-1006'].geometry} material={materials.Material} position={[0.99, -0.077, 1.712]} rotation={[3.125, 0.47, 3.083]} scale={0.359} />
-    <mesh geometry={nodes['Hex-1008'].geometry} material={materials.Material} position={[1.978, -0.077, -0.001]} rotation={[3.125, 0.47, 3.083]} scale={0.359} />
-    <mesh geometry={nodes['Hex-1009'].geometry} material={materials.Material} position={[0.988, -0.077, -1.714]} rotation={[3.125, 0.47, 3.083]} scale={0.359} />
-    <mesh geometry={nodes['Hex-1010'].geometry} material={materials.Material} position={[-0.99, -0.077, -1.712]} rotation={[3.125, 0.47, 3.083]} scale={0.359} />
-    <mesh geometry={nodes['Hex-1011'].geometry} material={materials.Material} position={[-1.978, -0.077, 0.001]} rotation={[3.125, 0.47, 3.083]} scale={0.359} />
+
+    <SpinningBlade dir={1} geometry={nodes['Hex-1004'].geometry} material={materials.Material} position={[-0.988, -0.077, 1.714]} rotation={[3.125, 0.47, 3.083]} scale={0.359} />
+    <SpinningBlade dir={-1} geometry={nodes['Hex-1006'].geometry} material={materials.Material} position={[0.99, -0.077, 1.712]} rotation={[3.125, 0.47, 3.083]} scale={0.359} />
+    <SpinningBlade dir={1} geometry={nodes['Hex-1008'].geometry} material={materials.Material} position={[1.978, -0.077, -0.001]} rotation={[3.125, 0.47, 3.083]} scale={0.359} />
+    <SpinningBlade dir={-1} geometry={nodes['Hex-1009'].geometry} material={materials.Material} position={[0.988, -0.077, -1.714]} rotation={[3.125, 0.47, 3.083]} scale={0.359} />
+    <SpinningBlade dir={1} geometry={nodes['Hex-1010'].geometry} material={materials.Material} position={[-0.99, -0.077, -1.712]} rotation={[3.125, 0.47, 3.083]} scale={0.359} />
+    <SpinningBlade dir={-1} geometry={nodes['Hex-1011'].geometry} material={materials.Material} position={[-1.978, -0.077, 0.001]} rotation={[3.125, 0.47, 3.083]} scale={0.359} />
   </group>
 );
+
 const EnginesQuadro = ({ nodes, materials }: GLTFResult) => (
   <group name="Engines_Quadro_Group">
     <mesh geometry={nodes['Engine-Quadro014'].geometry} material={nodes['Engine-Quadro014'].material} position={[-1.026, -0.171, 1.019]} scale={0.122} />
     <mesh geometry={nodes['Engine-Quadro015'].geometry} material={nodes['Engine-Quadro015'].material} position={[-1.026, -0.171, -1.021]} scale={0.122} />
     <mesh geometry={nodes['Engine-Quadro016'].geometry} material={nodes['Engine-Quadro016'].material} position={[1.027, -0.171, 1.021]} scale={0.122} />
     <mesh geometry={nodes['Engine-Quadro017'].geometry} material={nodes['Engine-Quadro017'].material} position={[1.026, -0.171, -1.019]} scale={0.122} />
-    <mesh geometry={nodes['Quadro-1002'].geometry} material={materials.Material} position={[-1.022, -0.076, -1.017]} rotation={[-Math.PI, 0.752, 3.054]} scale={0.336} />
-    <mesh geometry={nodes['Quadro-1012'].geometry} material={materials.Material} position={[1.022, -0.076, -1.015]} rotation={[-Math.PI, 0.752, 3.054]} scale={0.336} />
-    <mesh geometry={nodes['Quadro-1013'].geometry} material={materials.Material} position={[1.023, -0.076, 1.017]} rotation={[-Math.PI, 0.752, 3.054]} scale={0.336} />
-    <mesh geometry={nodes['Quadro-1014'].geometry} material={materials.Material} position={[-1.022, -0.076, 1.015]} rotation={[-Math.PI, 0.752, 3.054]} scale={0.336} />
+
+    <SpinningBlade dir={1} geometry={nodes['Quadro-1002'].geometry} material={materials.Material} position={[-1.022, -0.076, -1.017]} rotation={[-Math.PI, 0.752, 3.054]} scale={0.336} />
+    <SpinningBlade dir={-1} geometry={nodes['Quadro-1012'].geometry} material={materials.Material} position={[1.022, -0.076, -1.015]} rotation={[-Math.PI, 0.752, 3.054]} scale={0.336} />
+    <SpinningBlade dir={1} geometry={nodes['Quadro-1013'].geometry} material={materials.Material} position={[1.023, -0.076, 1.017]} rotation={[-Math.PI, 0.752, 3.054]} scale={0.336} />
+    <SpinningBlade dir={-1} geometry={nodes['Quadro-1014'].geometry} material={materials.Material} position={[-1.022, -0.076, 1.015]} rotation={[-Math.PI, 0.752, 3.054]} scale={0.336} />
   </group>
 );
 

@@ -34,15 +34,39 @@ export const LendingPage = () => {
                     <a href="#contacts">контакты</a>
                 </nav>
             </header>
-
             <div className="configurator-block">
                 <div className="scene-container">
                     <Scene3D parts={droneParts} />
                 </div>
-                <MainSection droneParts={droneParts} selectPreset={selectPreset} />
+                <div className="configurator-panel">
+                    <h2>КОНФИГУРАТОР</h2>
+                    <div className="controls-group">
+                        <h4>Выберите тип рамы:</h4>
+                        <div className="buttons-list">
+                            <button 
+                                className={droneParts.hull === 'octo' ? 'active' : ''} 
+                                onClick={() => selectPreset('octo')}
+                            >
+                                Октокоптер (8 лучей)
+                            </button>
+                            <button 
+                                className={droneParts.hull === 'hexa' ? 'active' : ''} 
+                                onClick={() => selectPreset('hexa')}
+                            >
+                                Гексакоптер (6 лучей)
+                            </button>
+                            <button 
+                                className={droneParts.hull === 'quad' ? 'active' : ''} 
+                                onClick={() => selectPreset('quad')}
+                            >
+                                Квадрокоптер (4 луча)
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-
             <div className='content'>
+                <MainSection />
                 <MissionSection/>
                 <AboutusSection />
                 <DevelopSection />
