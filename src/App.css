@@ -52,7 +52,6 @@ body, #root {
     position: relative;
     overflow: hidden;
     
-    /* Твой градиент */
     background: radial-gradient(circle at 40% 50%, #333333 0%, #000000 20%);
     z-index: 10;
 }
@@ -62,9 +61,6 @@ body, #root {
     flex: 1.1; /* Занимает 60% ширины */
     height: 100%; 
     position: relative;
-    
-    /* --- ИЗМЕНЕНИЕ ЗДЕСЬ --- */
-    /* Сдвигаем блок с дроном вверх на 60 пикселей */
     transform: translateY(-60px); 
 }
 
@@ -313,57 +309,89 @@ body, #root {
     letter-spacing: -5%;
 }
 
-.develop{
+.develop {
     position: relative;
+    width: 100%;
+    padding: 5rem 0;
 }
 
 .develop .backgroundBLueSphere{
     top: -30rem;
     right: 55vw;
     position: absolute;
+    z-index: 0;
 }
-
 .develop .backgroundRedSphere{
     top: 0;
     left: 50vw;
     position: absolute;
+    z-index: 0;
 }
 
-.develop .title{
+.develop .title {
     position: relative;
-    width: 85%;
+    width: 80%;
     text-align: center;
-    margin: 0 auto;
+    margin: 0 auto 6rem auto;
+    z-index: 3;
 }
-
-.develop .realms{
-    margin: 4rem auto;
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-}
-
-.develop .realm{
-    display: flex;
-    justify-content: flex-start;
-    width: 100%;
-}
-
-.develop .realm > p{
-    justify-content: center;
-    width: 40%;
-}
-
-.develop .realm span{
+.develop .title h2 {
+    font-family: 'TD Mars', sans-serif;
     font-size: 2.5rem;
-    font-family: 'pixy', sans-serif;
     text-transform: uppercase;
 }
 
-.develop .realms :nth-child(even){
-    justify-content: flex-end;
+.develop .realms {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8rem;
+    position: relative;
+    z-index: 2;
 }
+.develop .realm {
+    position: relative;
+    width: fit-content;
+    display: block;
+}
+
+.develop .realm:nth-child(odd) {
+    align-self: flex-start;
+    text-align: left;
+    margin-left: 5%;
+}
+.develop .realm:nth-child(even) {
+    align-self: flex-end;
+    text-align: right;
+    margin-right: 5%;
+}
+
+.drone-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 140%;
+    min-width: 300px;
+    height: auto;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.8; 
+}
+
+.develop .realm span {
+    font-size: 2rem;
+    font-family: 'pixy', sans-serif;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 2;
+    display: block;
+    line-height: 1.2;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
 
 .contacts{
     display: flex;
@@ -477,6 +505,7 @@ body, #root {
     fill: black;
 }
 
+
 @media (max-width: 1000px) {
     .configurator-block {
         flex-direction: column;
@@ -484,6 +513,7 @@ body, #root {
         min-height: 100vh;
         padding-top: 100px;
         padding-bottom: 50px;
+        background: radial-gradient(circle at 50% 30%, #333333 0%, #000000 70%);
     }
 
     .scene-container {
@@ -505,6 +535,23 @@ body, #root {
     .App .content .aboutus .aboutus_content .aboutus_content-items .aboutus_content-item h4 { font-size: 1.3rem; line-height: 30px; }
     .App .content .aboutus .aboutus_content .aboutus_content-items .aboutus_content-item p { font-size: 1.3rem; line-height: 20px; }
     .App .content .moreinformation { width: 70%; }
+    .develop .realms {
+        gap: 4rem;
+        width: 100%;
+        padding: 0 1rem;
+    }
+    .develop .realm:nth-child(odd),
+    .develop .realm:nth-child(even) {
+        align-self: center; 
+        text-align: center;
+        margin: 0;
+    }
+    .develop .realm span {
+        font-size: 1.5rem;
+    }
+    .drone-bg {
+        width: 120%;
+    }
 }
 
 @media (max-width: 750px) {
@@ -519,9 +566,6 @@ body, #root {
     .App .content .aboutus .aboutus_content-items { width: 100%; padding: 0 1rem; gap: 1rem; }
     .App .content .aboutus .aboutus_content-item { width: 40%; }
     .App .content .develop .title { width: 100%; }
-    .App .content .develop .realms { width: 90%; }
-    .App .content .develop .realms .realm > p { width: 100%; }
-    .App .content .develop .realms .realm span { font-size: 1.5rem; }
     .App .content .contacts .contacts_container { width: 90%; flex-direction: column; }
     .App .footer { padding: 3rem 2rem; flex-direction: column-reverse; gap: 2rem; }
     .App .footer .center ul { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
