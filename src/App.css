@@ -1,4 +1,4 @@
-/* --- ГЛОБАЛЬНЫЕ СТИЛИ И СБРОС --- */
+
 body, #root {
   margin: 0;
   padding: 0;
@@ -8,7 +8,6 @@ body, #root {
   overflow-x: hidden;
 }
 
-/* --- ВАШ ОРИГИНАЛЬНЫЙ КОД (КОНВЕРТИРОВАН И ИСПРАВЛЕН) --- */
 .App {
     display: flex;
     flex-direction: column;
@@ -39,9 +38,9 @@ body, #root {
 }
 
 .App .backgroundWhiteSphere, .App .backgroundRedSphere, .App .backgroundBLueSphere {
-    position: absolute; /* ABSOLUTE, ЧТОБЫ СКРОЛЛИЛИСЬ СО СТРАНИЦЕЙ */
+    position: absolute;
     border-radius: 100%;
-    z-index: 1; /* Под контентом */
+    z-index: 1;
     pointer-events: none;
 }
 
@@ -82,7 +81,6 @@ body, #root {
     background-color: #000; 
 }
 
-/* Секции, чтобы занимать место */
 .main, .mission, .aboutus, .develop, .contacts, .moreinformation, .footer {
     box-sizing: border-box;
 }
