@@ -15,9 +15,10 @@ export const MoreInfoSection = () => {
                 </div>
 
                 <div className="action-wrapper">
-                    <button className="btn-write">
+                    <a href="mailto:info@vdrone.tech" className="btn-write">
                         НАПИСАТЬ
-                    </button>
+                    </a>
+                    
                     <div className="pixel-drone-decoration">
                         <svg width="60" height="30" viewBox="0 0 60 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect x="20" y="10" width="20" height="6" fill="white"/>
