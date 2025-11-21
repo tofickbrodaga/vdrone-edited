@@ -6,6 +6,8 @@ import { AboutusSection } from "./ui/AboutusSection/AboutusSection.tsx";
 import { MissionSection } from "./ui/MissionSection/MissionSection.tsx";
 import { DevelopSection } from "./ui/DevelopSection/DevelopSection.tsx";
 import { ContactsSection } from "./ui/ContactsSection/ContactsSection.tsx";
+import { MoreInfoSection } from "./ui/MoreInfoSection/MoreInfoSection.tsx"; 
+
 import type { DroneParts } from '../../components/DroneConfigurator';
 import "../../App.css";
 
@@ -34,6 +36,7 @@ export const LendingPage = () => {
                     <a href="#contacts">контакты</a>
                 </nav>
             </header>
+
             <div className="configurator-block">
                 <div className="scene-container">
                     <Scene3D parts={droneParts} />
@@ -65,20 +68,13 @@ export const LendingPage = () => {
                     </div>
                 </div>
             </div>
+
             <div className='content'>
                 <MainSection />
                 <MissionSection/>
                 <AboutusSection />
                 <DevelopSection />
-
-                <section className="moreinformation">
-                    <h2>хотите узнать больше?</h2>
-                    <div className='input'>
-                        <input placeholder='Оставьте свой email и мы с вами свяжемся...'/>
-                        <button>отправить</button>
-                    </div>
-                </section>
-
+                <MoreInfoSection />
                 <ContactsSection/>
 
                 <footer className="footer">

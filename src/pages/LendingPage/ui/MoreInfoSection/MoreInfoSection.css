@@ -1,0 +1,104 @@
+
+.more-info-section {
+    width: 100%;
+    height: auto; 
+    min-height: auto;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 0 60px 0;
+    
+    background-color: #000;
+    position: relative;
+    text-align: center;
+    overflow: visible;
+}
+
+.content-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px; 
+}
+
+.big-title {
+    font-family: 'TD Mars', sans-serif;
+    font-size: 4rem;
+    line-height: 1;
+    color: white;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.glowing-arrow {
+    margin: 10px 0;
+    animation: bounceArrow 2s infinite ease-in-out;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
+}
+
+@keyframes bounceArrow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(15px); }
+}
+
+.action-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.btn-write {
+    background-color: #1964DD;
+    color: white;
+    font-family: 'PIXY', sans-serif;
+    font-size: 1.5rem;
+    padding: 20px 60px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(25, 100, 221, 0.4);
+    letter-spacing: 1px;
+}
+
+.btn-write:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(25, 100, 221, 0.6);
+}
+
+.pixel-drone-decoration {
+    position: absolute;
+    right: -80px;
+    top: -20px;
+    animation: droneFloat 3s infinite ease-in-out;
+    pointer-events: none;
+}
+
+@keyframes droneFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+@media (max-width: 768px) {
+    .more-info-section {
+        padding: 60px 0 40px 0;
+    }
+
+    .big-title {
+        font-size: 2.5rem;
+    }
+    
+    .btn-write {
+        padding: 15px 40px;
+        font-size: 1.2rem;
+    }
+    
+    .pixel-drone-decoration {
+        right: -50px;
+        transform: scale(0.7);
+    }
+}
