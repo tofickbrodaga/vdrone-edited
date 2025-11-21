@@ -70,12 +70,12 @@ export const LendingPage = () => {
             </div>
 
             <div className='content'>
-                <MainSection />
-                <MissionSection/>
+                <div id="about"><MainSection /></div>
+                 <div id="mission"> <MissionSection/></div>
                 <AboutusSection />
-                <DevelopSection />
+                <div id="develop"> <DevelopSection /></div>
                 <MoreInfoSection />
-                <ContactsSection/>
+                <div id="contacts"><ContactsSection/></div>
 
                 <footer className="footer">
                    <div className="left">
@@ -84,10 +84,10 @@ export const LendingPage = () => {
                    </div>
                     <div className='center'>
                         <ul>
-                            <li> о нас</li>
-                            <li>миссия</li>
-                            <li>направления</li>
-                            <li>контакты</li>
+                            <li><a href="#about" style={{color: 'inherit', textDecoration: 'none'}}>о нас</a></li>
+                            <li><a href="#mission" style={{color: 'inherit', textDecoration: 'none'}}>миссия</a></li>
+                            <li><a href="#develop" style={{color: 'inherit', textDecoration: 'none'}}>направления</a></li>
+                            <li><a href="#contacts" style={{color: 'inherit', textDecoration: 'none'}}>контакты</a></li>
                         </ul>
                     </div>
                     <div className="right">

@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body, #root {
   margin: 0;
   padding: 0;
@@ -28,18 +32,25 @@ body, #root {
 }
 
 .App .header .header_nav {
-    padding: 0 3rem;
     display: flex;
     align-items: center;
-    gap: 2em;
+    gap: 40px;
+    margin-left: auto;
 }
 
 .App .header .header_nav a {
-    font-size: 1.2rem;
+    font-family: 'durik', sans-serif;
+    font-size: 1.3rem;
     color: white;
     text-decoration: none;
-    font-weight: 500;
-    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+}
+
+.App .header .header_nav a:hover {
+    opacity: 0.7;
+    color: #7c7b7b;
 }
 
 .configurator-block {
@@ -56,15 +67,13 @@ body, #root {
     z-index: 10;
 }
 
-/* Левая часть: Область с дроном */
 .scene-container {
-    flex: 1.1; /* Занимает 60% ширины */
+    flex: 1.1;
     height: 100%; 
     position: relative;
     transform: translateY(-60px); 
 }
 
-/* Правая часть: Панель управления */
 .configurator-panel {
     flex: 1; 
     max-width: 400px;
@@ -490,9 +499,12 @@ body, #root {
     padding: 0;
 }
 
-.footer .center ul li{
+.footer .center ul li a {
     font-family: 'durik', sans-serif;
     color: black;
+    text-decoration: none;
+    font-size: 1rem; 
+    transition: opacity 0.3s ease;
 }
 
 .footer .right{
