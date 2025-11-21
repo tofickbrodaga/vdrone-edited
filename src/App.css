@@ -9,13 +9,16 @@ body, #root {
   background-color: #000;
   color: white;
   overflow-x: hidden;
+  width: 100%;
 }
 
 .App {
     display: flex;
     flex-direction: column;
     position: relative; 
-    overflow-x: clip; 
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
 }
 
 .App .header {
@@ -61,7 +64,6 @@ body, #root {
     height: 100vh;
     position: relative;
     overflow: hidden;
-    
     background: radial-gradient(circle at 50% 50%, #333333 0%, #000000 70%);
     z-index: 10;
 }
@@ -73,16 +75,15 @@ body, #root {
     top: 0;
     left: 0;
     z-index: 1;
-    transform: translateY(-40px);
+    transform: translateY(60px); 
 }
 
 .drone-selector-ui {
     position: absolute;
-    bottom: 10%;
+    top: 18%;
     left: 50%;
     transform: translateX(-50%);
     z-index: 20;
-    
     display: flex;
     align-items: center;
     justify-content: center;
@@ -118,17 +119,12 @@ body, #root {
     transform: scale(1.1);
 }
 
-.arrow-btn:active {
-    transform: scale(0.9);
-}
-
 .App .backgroundWhiteSphere, .App .backgroundRedSphere, .App .backgroundBLueSphere {
     position: absolute;
     border-radius: 100%;
     z-index: 1;
     pointer-events: none;
 }
-
 .App .backgroundWhiteSphere{
     top: -30rem;
     width: 40rem;
@@ -137,7 +133,6 @@ body, #root {
     filter: blur(12rem);
     background-color: #FFFFFF8F;
 }
-
 .App .backgroundRedSphere{
     top: -35rem;
     left: -40rem;
@@ -146,7 +141,6 @@ body, #root {
     filter: blur(12rem);
     background-color: #F41D1D8C;
 }
-
 .App .backgroundBLueSphere{
     top: 0rem;
     right: -40rem;
@@ -169,6 +163,7 @@ body, #root {
 
 .main, .mission, .aboutus, .develop, .contacts, .moreinformation, .footer {
     box-sizing: border-box;
+    width: 100%;
 }
 
 .main {
@@ -182,14 +177,17 @@ body, #root {
     font-size: 3em;
     font-family: 'TD Mars', sans-serif;
     font-weight: 400;
-    line-height: 50px;
-    letter-spacing: 0%;
+    line-height: 1.2;
+    margin-bottom: 20px;
 }
+
 .main p {
     font-weight: 300;
-    line-height: 50px;
-    letter-spacing: -5%;
+    line-height: 1.5;
+    font-size: 1.6rem;
     font-family: Helvetica;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .mission {
@@ -200,23 +198,23 @@ body, #root {
     text-align: left;
     position: relative;
     z-index: 3;
-    padding: 0 3rem;
+    padding: 0; 
 }
 .mission .mission_content {
-    padding-left: 3rem;
-    width: 40%;
+    padding-left: 10%; 
+    padding-right: 20px;
+    width: 45%;
     display: flex;
-    align-items: flex-start;
     flex-direction: column;
     gap: 2rem;
 }
 .mission .mission_content p {
     font-weight: 300;
-    line-height: 40px;
-    letter-spacing: -5%;
+    line-height: 1.5;
+    font-size: 1.2rem;
 }
 .mission .mission_content-items{
-    width: 80%;
+    width: 100%;
     margin-top: 4rem;
     display: flex;
     flex-direction: column;
@@ -233,58 +231,89 @@ body, #root {
 }
 .mission .mission_img {
     width: 50%;
+    display: block; 
+    object-fit: cover;
 }
 
 .aboutus {
     margin: 0 auto;
     text-align: center;
     z-index: 3;
-}
-.aboutus .title{
-    width: 65%;
-    margin: 0 auto;
-}
-.aboutus .title p {
-    font-family: Helvetica;
-    font-weight: 300;
-    line-height: 50px;
-    letter-spacing: -5%;
-}
-.aboutus .aboutus_content{
+    padding: 4rem 0;
     width: 100%;
-    margin: 4rem auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 3rem;
-    box-sizing: border-box;
+    overflow: hidden;
 }
-.aboutus .aboutus_content-items{
-    padding-left: 3rem;
-    width: 60%;
+.aboutus .title {
+    width: 75%;
+    margin: 0 auto 5rem auto;
+}
+
+.aboutus .title p {
+    font-family: Helvetica, sans-serif;
+    font-weight: 300;
+    line-height: 1.4;
+    font-size: 2rem;
+    color: #ddd;
+}
+
+.aboutus .aboutus_content {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    justify-content: space-between; 
+    padding-left: 10%; 
+    padding-right: 0; 
     gap: 2rem;
 }
-.aboutus .aboutus_content-item{
-    width: 45%;
-    text-align: left;
+
+.aboutus .aboutus_content-items {
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4rem;
+    justify-content: flex-start;
 }
-.aboutus .aboutus_content-item h4{
+
+.aboutus .aboutus_content-item {
+    width: 45%; 
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.aboutus .aboutus_content-item h4 {
     font-family: 'TD Mars', sans-serif;
     font-weight: 400;
     font-size: 1.5rem;
-    line-height: 40px;
-    letter-spacing: -5%;
+    line-height: 1.2;
+    margin: 0;
+    text-transform: uppercase;
 }
-.aboutus .aboutus_content-item p{
-    font-family: Helvetica;
+.aboutus .aboutus_content-item p {
+    font-family: Helvetica, sans-serif;
     font-weight: 300;
-    font-size: 1.5rem;
-    line-height: 25px;
-    letter-spacing: -5%;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    color: #bbb;
+    margin: 0;
+}
+.aboutus .aboutus_content-item img, 
+.aboutus .aboutus_content-item svg {
+    max-width: 60px;
+    height: auto;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.aboutus .aboutus_content > img {
+    width: 45%;
+    max-width: none;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    object-position: right center;
 }
 
 .develop {
@@ -292,19 +321,8 @@ body, #root {
     width: 100%;
     padding: 5rem 0;
 }
-
-.develop .backgroundBLueSphere{
-    top: -30rem;
-    right: 55vw;
-    position: absolute;
-    z-index: 0;
-}
-.develop .backgroundRedSphere{
-    top: 0;
-    left: 50vw;
-    position: absolute;
-    z-index: 0;
-}
+.develop .backgroundBLueSphere{ top: -30rem; right: 55vw; position: absolute; z-index: 0; }
+.develop .backgroundRedSphere{ top: 0; left: 50vw; position: absolute; z-index: 0; }
 
 .develop .title {
     position: relative;
@@ -318,7 +336,6 @@ body, #root {
     font-size: 2.5rem;
     text-transform: uppercase;
 }
-
 .develop .realms {
     width: 90%;
     max-width: 1200px;
@@ -334,17 +351,8 @@ body, #root {
     width: fit-content;
     display: block;
 }
-
-.develop .realm:nth-child(odd) {
-    align-self: flex-start;
-    text-align: left;
-    margin-left: 5%;
-}
-.develop .realm:nth-child(even) {
-    align-self: flex-end;
-    text-align: right;
-    margin-right: 5%;
-}
+.develop .realm:nth-child(odd) { align-self: flex-start; text-align: left; margin-left: 5%; }
+.develop .realm:nth-child(even) { align-self: flex-end; text-align: right; margin-right: 5%; }
 
 .drone-bg {
     position: absolute;
@@ -358,7 +366,6 @@ body, #root {
     pointer-events: none;
     opacity: 0.8; 
 }
-
 .develop .realm span {
     font-size: 2rem;
     font-family: 'pixy', sans-serif;
@@ -370,11 +377,20 @@ body, #root {
     text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 
+.more-info-section {
+    width: 100% !important;
+    height: auto !important; 
+    min-height: auto !important;
+    padding: 50px 10px !important;
+    overflow: visible;
+}
+
 .contacts{
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 3rem;
+    padding: 0 1rem;
 }
 .contacts .contacts_container{
     width: 80%;
@@ -406,142 +422,117 @@ body, #root {
     padding: 5rem 3rem;
     color: black;
 }
-.footer .left h4{
-    font-family: "TD Mars";
-    font-size: 1rem;
-    color: black;
-}
-.footer .left p{
-    font-size: 1rem;
-    font-family: 'pixy', sans-serif;
-    color: black;
-}
-.footer .center ul{
-    list-style: none;
-    padding: 0;
-}
+.footer .left h4{ font-family: "TD Mars"; font-size: 1rem; color: black; }
+.footer .left p{ font-size: 1rem; font-family: 'pixy', sans-serif; color: black; }
+.footer .center ul{ list-style: none; padding: 0; }
+.footer .center ul li a { font-family: 'durik', sans-serif; color: black; text-decoration: none; font-size: 1rem; transition: opacity 0.3s ease; }
+.footer .center ul li a:hover { color: #1964DD; }
+.footer .right{ display: flex; flex-direction: column; color: black; }
+.footer .right svg path { fill: black; }
 
-.footer .center ul li a {
-    font-family: 'durik', sans-serif;
-    color: black;
-    text-decoration: none;
-    font-size: 1rem; 
-    transition: opacity 0.3s ease;
-}
-.footer .center ul li a:hover {
-    color: #1964DD;
-}
+@media (max-width: 1100px) {
+    .configurator-block { height: auto; min-height: 80vh; padding-top: 0; }
+    .drone-selector-ui { top: 20%; gap: 20px; }
+    .drone-label { font-size: 2.5rem; min-width: 200px; }
+    .arrow-btn svg { width: 40px; height: 30px; }
+    .scene-container.full-width { height: 60vh; transform: translateY(50px); }
 
-.footer .right{
-    display: flex;
-    flex-direction: column;
-    color: black;
-}
-.footer .right svg path {
-    fill: black;
-}
-
-
-@media (max-width: 1000px) {
-    .configurator-block {
-        height: 80vh;
-        padding-top: 0;
-    }
-
-    .scene-container.full-width {
-        transform: translateY(0);
-    }
-
-    .drone-selector-ui {
-        bottom: 15%;
-        gap: 20px;
-    }
-
-    .drone-label {
-        font-size: 2rem;
-        min-width: 200px;
-    }
-
-    .arrow-btn svg {
-        width: 40px;
-        height: 30px;
-    }
-
-    .App .content .main h1 { font-size: 2.5rem; }
-    .App .content .main p { line-height: 35px; }
-    .develop .realms {
+    .aboutus .aboutus_content {
+        flex-direction: column;
+        padding: 0;
         gap: 4rem;
+    }
+    .aboutus .aboutus_content-items {
         width: 100%;
-        padding: 0 1rem;
+        justify-content: center;
+        padding: 0 2rem;
     }
-    .develop .realm:nth-child(odd),
-    .develop .realm:nth-child(even) {
-        align-self: center; 
+    .aboutus .aboutus_content-item {
+        width: 40%;
         text-align: center;
-        margin: 0;
+        align-items: center;
     }
-    .develop .realm span {
-        font-size: 1.5rem;
+    .aboutus .aboutus_content > img {
+        width: 80%;
+        margin: 0 auto;
+        margin-top: 2rem;
+        object-position: center;
     }
-    .drone-bg {
-        width: 120%;
-    }
+
+    .develop .realms { gap: 4rem; width: 100%; padding: 0 1rem; }
+    .develop .realm:nth-child(odd),
+    .develop .realm:nth-child(even) { align-self: center; text-align: center; margin: 0; }
+    .develop .realm span { font-size: 1.5rem; }
+    .drone-bg { width: 120%; }
 }
 
 @media (max-width: 750px) {
-    .App .header img { width: 25px; }
+    .App .header { 
+        flex-direction: column; 
+        gap: 15px;
+        padding: 1rem;
+        background: rgba(0,0,0,0.6);
+    }
     .App .header .header_nav { 
         gap: 15px;
-        padding: 0 1rem;
+        padding: 0;
+        margin: 0 auto;
+        flex-wrap: wrap;
+        justify-content: center;
     }
     .App .header .header_nav a {
         font-size: 0.9rem;
     }
 
-    .App .backgroundWhiteSphere { width: 90vw; left: 5vw; height: 90vw; filter: blur(4rem); }
-    .App .backgroundRedSphere { width: 50rem; height: 70rem; }
-    .App .backgroundBLueSphere { width: 60rem; height: 60rem; }
+    .main { width: 90%; }
+    .main h1 { font-size: 2rem; word-wrap: break-word; }
+    .main p { font-size: 1.2rem; }
+    .mission { flex-direction: column; gap: 2rem; padding: 0 1rem; }
+    .mission .mission_content { width: 100%; padding: 0; }
+    .mission .mission_img { display: none; } 
+    .aboutus .title { width: 90%; margin-bottom: 2rem; }
+    .aboutus .title p { font-size: 1.4rem; }
+    
+    .aboutus .aboutus_content-items {
+        flex-direction: column;
+        gap: 3rem;
+        width: 100%;
+    }
+    .aboutus .aboutus_content-item {
+        width: 90%;
+        margin: 0 auto;
+        text-align: center;
+        align-items: center;
+    }
+    .aboutus .aboutus_content-item h4 { font-size: 1.3rem; }
+    .aboutus .aboutus_content-item p { font-size: 1.1rem; }
+    
+    .aboutus .aboutus_content > img {
+        width: 100%;
+        margin-top: 2rem;
+        opacity: 0.8;
+        object-position: center;
+    }
+
+    .configurator-block { min-height: 70vh; }
+    .drone-selector-ui { top: 25%; gap: 15px; }
+    .drone-label { font-size: 1.8rem; min-width: 150px; }
+    .arrow-btn svg { width: 30px; height: 20px; }
+    .scene-container.full-width { height: 50vh; transform: translateY(80px); }
+
+    .App .backgroundWhiteSphere { width: 90vw; left: 5vw; height: 90vw; filter: blur(4rem); opacity: 0.5; }
+    .App .backgroundRedSphere { width: 50rem; height: 70rem; opacity: 0.5; }
+    .App .backgroundBLueSphere { width: 60rem; height: 60rem; opacity: 0.5; }
     .App .content { margin-top: 0; }
+
+    .contacts .contacts_container { width: 100%; padding: 0 1rem; flex-direction: column; gap: 2rem; }
     
-    .mission .mission_content { width: 100%; padding: 0 1rem; }
-    .aboutus { width: 100%; }
-    .aboutus .title { width: 100%; }
-    .aboutus .aboutus_content-items { width: 100%; padding: 0 1rem; gap: 1rem; }
-    .aboutus .aboutus_content-item { width: 40%; }
-    
-    .contacts .contacts_container { width: 90%; flex-direction: column; }
-    
-    .footer { padding: 3rem 2rem; flex-direction: column-reverse; gap: 2rem; }
+    .footer { padding: 2rem 1rem; flex-direction: column-reverse; gap: 2rem; }
     .footer .center ul { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
     .footer .right { flex-direction: row; justify-content: space-between; width: 100%; align-items: center; }
 }
 
-@media (max-width: 600px) {
-    .configurator-block {
-        height: 70vh;
-    }
-    .drone-label {
-        font-size: 1.5rem;
-        min-width: 150px;
-    }
-    .arrow-btn svg {
-        width: 30px;
-        height: 20px;
-    }
-
-    .App .header { padding: 1rem 0.5rem; }
-    .App .content .main { width: 90%; }
-    .App .content .main h1 { font-size: 2rem; }
-    .mission > img { display: none; }
-    .mission .mission_content-items { margin-top: 0; width: 100%; }
-    .mission .mission_content-item span { font-size: 1.3rem; }
-    
-    .aboutus .aboutus_content { flex-direction: column; gap: 2rem; }
-    .aboutus .aboutus_content > img { margin-top: 2rem; width: 100%; }
-    .aboutus .aboutus_content-items .aboutus_content-item { padding: 0 1rem; width: 100%; display: flex; flex-direction: column; height: fit-content; align-items: center; text-align: center; }
-    .aboutus .aboutus_content-items .aboutus_content-item h4 { font-size: 1.1rem; line-height: 30px; }
-}
-
 @media (max-width: 400px) {
     .App .content .main h1 { font-size: 1.5rem; }
+    .drone-label { font-size: 1.5rem; min-width: auto; }
 }
