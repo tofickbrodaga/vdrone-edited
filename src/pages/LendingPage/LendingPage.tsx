@@ -7,22 +7,31 @@ import { MissionSection } from "./ui/MissionSection/MissionSection.tsx";
 import { DevelopSection } from "./ui/DevelopSection/DevelopSection.tsx";
 import { ContactsSection } from "./ui/ContactsSection/ContactsSection.tsx";
 import { MoreInfoSection } from "./ui/MoreInfoSection/MoreInfoSection.tsx"; 
-
 import type { DroneParts } from '../../components/DroneConfigurator';
 import "../../App.css";
 
-export const LendingPage = () => {
-    const [droneParts, setDroneParts] = useState<DroneParts>({
-        hull: 'octo',
-        engines: 'octo',
-        stands: 'high_octo',
-    });
+const DRONE_VARIANTS = [
+    { id: 'quad', label: 'КВАДРОКОПТЕР', stands: 'low_quad' },
+    { id: 'hexa', label: 'ГЕКСАКОПТЕР', stands: 'medium_hexa' },
+    { id: 'octo', label: 'ОКТОКОПТЕР', stands: 'high_octo' }
+] as const;
 
-    const selectPreset = (preset: 'octo' | 'hexa' | 'quad') => {
-        let standsPreset: DroneParts['stands'] = 'high_octo';
-        if (preset === 'hexa') standsPreset = 'medium_hexa';
-        if (preset === 'quad') standsPreset = 'low_quad';
-        setDroneParts({ hull: preset, engines: preset, stands: standsPreset });
+export const LendingPage = () => {
+    const [currentIndex, setCurrentIndex] = useState(2);
+    const currentVariant = DRONE_VARIANTS[currentIndex];
+    
+    const droneParts: DroneParts = {
+        hull: currentVariant.id,
+        engines: currentVariant.id,
+        stands: currentVariant.stands as DroneParts['stands'],
+    };
+
+    const handleNext = () => {
+        setCurrentIndex((prev) => (prev + 1) % DRONE_VARIANTS.length);
+    };
+
+    const handlePrev = () => {
+        setCurrentIndex((prev) => (prev - 1 + DRONE_VARIANTS.length) % DRONE_VARIANTS.length);
     };
 
     return (
@@ -38,44 +47,52 @@ export const LendingPage = () => {
             </header>
 
             <div className="configurator-block">
-                <div className="scene-container">
+                <div className="scene-container full-width">
                     <Scene3D parts={droneParts} />
                 </div>
-                <div className="configurator-panel">
-                    <h2>КОНФИГУРАТОР</h2>
-                    <div className="controls-group">
-                        <h4>Выберите тип рамы:</h4>
-                        <div className="buttons-list">
-                            <button 
-                                className={droneParts.hull === 'octo' ? 'active' : ''} 
-                                onClick={() => selectPreset('octo')}
-                            >
-                                Октокоптер (8 лучей)
-                            </button>
-                            <button 
-                                className={droneParts.hull === 'hexa' ? 'active' : ''} 
-                                onClick={() => selectPreset('hexa')}
-                            >
-                                Гексакоптер (6 лучей)
-                            </button>
-                            <button 
-                                className={droneParts.hull === 'quad' ? 'active' : ''} 
-                                onClick={() => selectPreset('quad')}
-                            >
-                                Квадрокоптер (4 луча)
-                            </button>
-                        </div>
+
+                <div className="drone-selector-ui">
+                    <button className="arrow-btn" onClick={handlePrev}>
+                        <svg width="60" height="40" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 20L58 20" stroke="white" strokeWidth="4" strokeLinecap="round"/>
+                            <path d="M20 20L35 5" stroke="white" strokeWidth="4" strokeLinecap="round"/>
+                            <path d="M20 20L35 35" stroke="white" strokeWidth="4" strokeLinecap="round"/>
+                        </svg>
+                    </button>
+
+                    <div className="drone-label">
+                        {currentVariant.label}
                     </div>
+                    <button className="arrow-btn" onClick={handleNext}>
+                        <svg width="60" height="40" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M40 20L2 20" stroke="white" strokeWidth="4" strokeLinecap="round"/>
+                            <path d="M40 20L25 5" stroke="white" strokeWidth="4" strokeLinecap="round"/>
+                            <path d="M40 20L25 35" stroke="white" strokeWidth="4" strokeLinecap="round"/>
+                        </svg>
+                    </button>
                 </div>
             </div>
 
             <div className='content'>
-                <div id="about"><MainSection /></div>
-                 <div id="mission"> <MissionSection/></div>
+                
+                <div id="about">
+                    <MainSection />
+                </div>
+                
+                <div id="mission">
+                    <MissionSection/>
+                </div>
+
                 <AboutusSection />
-                <div id="develop"> <DevelopSection /></div>
+                
+                <div id="develop">
+                    <DevelopSection />
+                </div>
                 <MoreInfoSection />
-                <div id="contacts"><ContactsSection/></div>
+
+                <div id="contacts">
+                    <ContactsSection/>
+                </div>
 
                 <footer className="footer">
                    <div className="left">
@@ -93,7 +110,6 @@ export const LendingPage = () => {
                     <div className="right">
                         <svg width="76" height="34" viewBox="0 0 76 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M59.9924 2.75C57.3553 2.75 54.7774 3.55642 52.5848 5.06729C50.3921 6.57816 48.6832 8.72562 47.674 11.2381C46.6648 13.7506 46.4008 16.5153 46.9153 19.1825C47.4297 21.8497 48.6996 24.2997 50.5643 26.2227C52.429 28.1457 54.8048 29.4553 57.3912 29.9858C59.9776 30.5163 62.6585 30.244 65.0948 29.2033C67.5312 28.1626 69.6136 26.4003 71.0787 24.1391C72.5437 21.8779 73.3257 19.2195 73.3257 16.5C73.3259 14.6943 72.9811 12.9062 72.3111 11.2379C71.6411 9.56963 70.659 8.05378 69.4208 6.77695C68.1827 5.50011 66.7128 4.4873 65.095 3.79635C63.4773 3.1054 61.7434 2.74985 59.9924 2.75ZM64.2317 23.5846C64.1818 23.713 64.1059 23.8288 64.009 23.9244C63.9122 24.02 63.7966 24.0931 63.6701 24.1389C63.5436 24.1847 63.409 24.202 63.2755 24.1898C63.1419 24.1775 63.0125 24.136 62.8957 24.068L59.2762 21.1676L56.9531 23.3778C56.8992 23.4188 56.8361 23.4453 56.7697 23.4546C56.7033 23.464 56.6357 23.4559 56.5731 23.4313L57.0184 19.3222L57.0327 19.3338L57.0418 19.2527C57.0418 19.2527 63.5551 13.1374 63.8205 12.8768C64.0891 12.6169 64.0005 12.5606 64.0005 12.5606C64.0157 12.2436 63.5184 12.5606 63.5184 12.5606L54.8884 18.2861L51.2944 17.0239C51.2944 17.0239 50.7424 16.8197 50.6904 16.3708C50.6357 15.9253 51.3124 15.6833 51.3124 15.6833L65.6017 9.82917C65.6017 9.82917 66.7764 9.28946 66.7764 10.1833L64.2317 23.5846Z" fill="black"/>
-                            <path d="M32.0833 9.27933C32.0669 8.66814 32.0182 8.05817 31.9375 7.45183C31.8286 6.92076 31.6471 6.4062 31.3979 5.92183C31.1372 5.39639 30.7872 4.91745 30.3625 4.50516C29.9338 4.09745 29.4417 3.758 28.9041 3.49933C28.4048 3.26196 27.8752 3.09044 27.3291 2.98933C26.7109 2.89937 26.0874 2.84732 25.4625 2.8335H9.55204C8.92288 2.84941 8.29497 2.8967 7.67079 2.97516C7.1241 3.08094 6.59441 3.25723 6.09579 3.49933C5.5549 3.75254 5.06187 4.09259 4.63746 4.50516C4.21776 4.92154 3.86832 5.39964 3.60204 5.92183C3.35769 6.40684 3.18113 6.9214 3.07704 7.45183C2.98444 8.0524 2.93086 8.65805 2.91663 9.26516C2.91663 9.53433 2.91663 9.91683 2.91663 10.0302V23.9702C2.91663 24.126 2.91663 24.466 2.91663 24.721C2.93301 25.3322 2.98169 25.9422 3.06246 26.5485C3.17135 27.0796 3.35282 27.5941 3.60204 28.0785C3.8627 28.6039 4.21275 29.0829 4.63746 29.4952C5.06608 29.9029 5.55824 30.2423 6.09579 30.501C6.59507 30.7384 7.12476 30.9099 7.67079 31.011C8.28903 31.101 8.91249 31.153 9.53746 31.1668H25.4479C26.077 31.1509 26.705 31.1036 27.3291 31.0252C27.8758 30.9194 28.4055 30.7431 28.9041 30.501C29.445 30.2478 29.938 29.9077 30.3625 29.4952C30.7822 29.0788 31.1316 28.6007 31.3979 28.0785C31.6422 27.5935 31.8188 27.0789 31.9229 26.5485C32.0155 25.9479 32.0691 25.3423 32.0833 24.7352C32.0833 24.466 32.0833 24.126 32.0833 23.9702V10.0302C32.0833 9.91683 32.0833 9.53433 32.0833 9.27933ZM17.8354 26.9168C16.084 26.9084 14.3633 26.4698 12.8333 25.6418L7.29163 27.0585L8.74996 21.7885C7.8095 20.2535 7.30619 18.5031 7.29163 16.7168C7.29743 14.7093 7.91463 12.7483 9.06548 11.0809C10.2163 9.41349 11.8494 8.11416 13.7589 7.34659C15.6685 6.57902 17.7692 6.37753 19.7964 6.76749C21.8236 7.15745 23.6867 8.12143 25.151 10.9546C26.6153 10.9546 27.6154 12.7604 28.0253 14.7281C28.4351 16.6957 28.2364 18.7372 27.4542 20.5954C26.672 22.4536 25.3413 24.0453 23.6296 25.1702C21.918 26.2951 19.9019 26.9028 17.8354 26.9168ZM17.8354 8.316C16.2893 8.33318 14.7755 8.74806 13.4481 9.51837C12.1207 10.2887 11.0271 11.3869 10.2787 12.7013C9.53034 14.0157 9.15384 15.4992 9.18758 17.0009C9.22132 18.5026 9.66408 19.9688 10.4708 21.2502L10.675 21.576L9.79996 24.6785L13.125 23.8002L13.4458 23.9843C14.7723 24.7433 16.2814 25.1489 17.8208 25.1602C20.1414 25.1602 22.367 24.2646 24.008 22.6706C25.6489 21.0765 26.5708 18.9145 26.5708 16.6602C26.5708 14.4058 25.6489 12.2438 24.008 10.6498C22.367 9.0557 20.1414 8.16016 17.8208 8.16016L17.8354 8.316ZM22.9395 20.386C22.7485 20.6955 22.4928 20.9626 22.1888 21.17C21.8849 21.3774 21.5395 21.5206 21.175 21.5902C20.6303 21.6869 20.0696 21.6528 19.5416 21.491C19.0448 21.3401 18.5579 21.1604 18.0833 20.9527C16.2804 20.0739 14.7429 18.756 13.6208 17.1277C13.011 16.3733 12.6411 15.4624 12.5562 14.5068C12.5475 14.1099 12.6248 13.7156 12.7831 13.3495C12.9414 12.9834 13.1771 12.6537 13.475 12.3818C13.5627 12.2852 13.6703 12.2075 13.7909 12.1538C13.9115 12.1002 14.0423 12.0716 14.175 12.0702H14.5833C14.7437 12.0702 14.9625 12.0702 15.1666 12.5093C15.3708 12.9485 15.9104 14.266 15.9833 14.3935C16.0191 14.4615 16.0378 14.5367 16.0378 14.6131C16.0378 14.6894 16.0191 14.7647 15.9833 14.8327C15.9188 14.9866 15.8303 15.13 15.7208 15.2577C15.5895 15.4135 15.4437 15.5977 15.327 15.711C15.2104 15.8243 15.0645 15.966 15.2104 16.221C15.6072 16.8715 16.0983 17.4631 16.6687 17.9777C17.2898 18.5108 18 18.9372 18.7687 19.2385C19.0312 19.366 19.1916 19.3518 19.3375 19.2385C19.4833 19.1252 19.9937 18.5018 20.1687 18.2468C20.3437 17.9918 20.5187 18.0343 20.752 18.1193C20.9854 18.2043 22.2833 18.8135 22.5458 18.941C22.8083 19.0685 22.9687 19.1252 23.0416 19.2385C23.1049 19.6093 23.0697 19.9896 22.9395 20.3435V20.386Z" fill="black"/>
                         </svg>
                         info@vdrone.tech
                     </div>
