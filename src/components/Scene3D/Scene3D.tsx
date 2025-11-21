@@ -1,4 +1,4 @@
-import { Suspense, useRef, useEffect } from 'react';
+import { Suspense, useRef } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls, Environment, ContactShadows, Float } from '@react-three/drei';
 import { DroneConfigurator } from '../DroneConfigurator';
@@ -10,15 +10,15 @@ interface Scene3DProps {
 }
 
 const CameraRig = ({ hull }: { hull: string }) => {
-  const { camera } = useThree();
-
-  let targetZ = 6.5;
-  if (hull === 'hexa') targetZ = 9;
-  if (hull === 'octo') targetZ = 10.5;
+  useThree(); 
+  
+  let targetZ = 6.5; 
+  if (hull === 'hexa') targetZ = 9; 
+  if (hull === 'octo') targetZ = 10.5; 
 
   useFrame((state, delta) => {
     const targetPosition = new THREE.Vector3(0, 1, targetZ);
-    state.camera.position.lerp(targetPosition, 2.5 * delta);
+    state.camera.position.lerp(targetPosition, 2.5 * delta); 
   });
 
   return null;
@@ -64,7 +64,7 @@ const Scene3D = ({ parts }: Scene3DProps) => {
           <ContactShadows 
             position={[0, -1.6, 0]} 
             opacity={0.7} 
-            scale={15}
+            scale={15} 
             blur={2.5} 
             far={4.5} 
             color="black"
