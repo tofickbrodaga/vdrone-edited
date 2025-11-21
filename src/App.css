@@ -1,5 +1,6 @@
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body, #root {
@@ -10,6 +11,7 @@ body, #root {
   color: white;
   overflow-x: hidden;
   width: 100%;
+  -webkit-font-smoothing: antialiased;
 }
 
 .App {
@@ -180,7 +182,6 @@ body, #root {
     line-height: 1.2;
     margin-bottom: 20px;
 }
-
 .main p {
     font-weight: 300;
     line-height: 1.5;
@@ -247,7 +248,6 @@ body, #root {
     width: 75%;
     margin: 0 auto 5rem auto;
 }
-
 .aboutus .title p {
     font-family: Helvetica, sans-serif;
     font-weight: 300;
@@ -255,7 +255,6 @@ body, #root {
     font-size: 2rem;
     color: #ddd;
 }
-
 .aboutus .aboutus_content {
     width: 100%;
     max-width: 100%;
@@ -267,7 +266,6 @@ body, #root {
     padding-right: 0; 
     gap: 2rem;
 }
-
 .aboutus .aboutus_content-items {
     width: 50%;
     display: flex;
@@ -275,7 +273,6 @@ body, #root {
     gap: 4rem;
     justify-content: flex-start;
 }
-
 .aboutus .aboutus_content-item {
     width: 45%; 
     text-align: left;
@@ -306,7 +303,6 @@ body, #root {
     margin-bottom: 10px;
     display: block;
 }
-
 .aboutus .aboutus_content > img {
     width: 45%;
     max-width: none;
@@ -391,6 +387,7 @@ body, #root {
     align-items: center;
     gap: 3rem;
     padding: 0 1rem;
+    width: 100%;
 }
 .contacts .contacts_container{
     width: 80%;
@@ -403,13 +400,17 @@ body, #root {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    text-align: left; 
 }
 .contacts .information h4{
     font-family: 'pixy', sans-serif;
     font-size: 2rem;
+    margin: 0 0 10px 0;
 }
 .contacts .information p{
     font-size: 1.5rem;
+    margin: 0;
+    line-height: 1.4;
 }
 
 .footer{
@@ -492,7 +493,6 @@ body, #root {
     .mission .mission_img { display: none; } 
     .aboutus .title { width: 90%; margin-bottom: 2rem; }
     .aboutus .title p { font-size: 1.4rem; }
-    
     .aboutus .aboutus_content-items {
         flex-direction: column;
         gap: 3rem;
@@ -506,27 +506,40 @@ body, #root {
     }
     .aboutus .aboutus_content-item h4 { font-size: 1.3rem; }
     .aboutus .aboutus_content-item p { font-size: 1.1rem; }
-    
     .aboutus .aboutus_content > img {
-        width: 100%;
-        margin-top: 2rem;
-        opacity: 0.8;
-        object-position: center;
+        display: none;
     }
-
     .configurator-block { min-height: 70vh; }
     .drone-selector-ui { top: 25%; gap: 15px; }
     .drone-label { font-size: 1.8rem; min-width: 150px; }
     .arrow-btn svg { width: 30px; height: 20px; }
     .scene-container.full-width { height: 50vh; transform: translateY(80px); }
+    .develop .realms { gap: 5rem; }
+    .develop .realm span {
+        font-size: 1.4rem;
+        white-space: normal; 
+        word-wrap: break-word;
+    }
+    .drone-bg { max-width: 280px; }
 
-    .App .backgroundWhiteSphere { width: 90vw; left: 5vw; height: 90vw; filter: blur(4rem); opacity: 0.5; }
-    .App .backgroundRedSphere { width: 50rem; height: 70rem; opacity: 0.5; }
-    .App .backgroundBLueSphere { width: 60rem; height: 60rem; opacity: 0.5; }
-    .App .content { margin-top: 0; }
+    .more-info-section { padding: 30px 10px !important; }
+    .more-info-section .big-title {
+        font-size: 2.2rem !important;
+        line-height: 1.2;
+        word-break: break-word;
+        width: 100%;
+    }
 
-    .contacts .contacts_container { width: 100%; padding: 0 1rem; flex-direction: column; gap: 2rem; }
-    
+    .contacts .contacts_container { width: 100%; padding: 0 1.5rem; flex-direction: column; gap: 2rem; }
+    .contacts .information { width: 100%; text-align: left; }
+    .contacts .information h4 { 
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+    .contacts .information p { 
+        font-size: 1rem;
+        word-wrap: break-word;
+    }
     .footer { padding: 2rem 1rem; flex-direction: column-reverse; gap: 2rem; }
     .footer .center ul { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
     .footer .right { flex-direction: row; justify-content: space-between; width: 100%; align-items: center; }
@@ -535,4 +548,5 @@ body, #root {
 @media (max-width: 400px) {
     .App .content .main h1 { font-size: 1.5rem; }
     .drone-label { font-size: 1.5rem; min-width: auto; }
+    .more-info-section .big-title { font-size: 1.8rem !important; }
 }
