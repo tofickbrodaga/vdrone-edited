@@ -39,7 +39,7 @@ body, #root {
 }
 
 .App .header .header_nav a {
-    font-family: 'TD Mars', sans-serif;
+    font-family: 'durik', sans-serif;
     font-size: 1.1rem;
     color: white;
     text-decoration: none;
@@ -235,7 +235,6 @@ body, #root {
     width: 50%;
 }
 
-/* Секция О нас */
 .aboutus {
     margin: 0 auto;
     text-align: center;
@@ -468,11 +467,8 @@ body, #root {
         height: 30px;
     }
 
-    /* Адаптив контента */
     .App .content .main h1 { font-size: 2.5rem; }
     .App .content .main p { line-height: 35px; }
-    
-    /* Адаптив Develop (выстраиваем в колонку) */
     .develop .realms {
         gap: 4rem;
         width: 100%;
@@ -495,7 +491,7 @@ body, #root {
 @media (max-width: 750px) {
     .App .header img { width: 25px; }
     .App .header .header_nav { 
-        gap: 15px; /* Уменьшаем отступы меню */
+        gap: 15px;
         padding: 0 1rem;
     }
     .App .header .header_nav a {
